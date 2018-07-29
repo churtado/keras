@@ -33,7 +33,7 @@ test_images = test_images.astype('float32') / 255
 
 
 # each element in these tensors is a number from 0-9. Change so they are 10-dim, 1-axis binary tensor
-# with only 1 on the value pertaining to the class
+# with only 1 on the value pertaining to the class. This is known as 1-hot encoding
 train_labels = to_categorical(train_labels)
 test_labels = to_categorical(test_labels)
 
