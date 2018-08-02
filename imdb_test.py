@@ -1,6 +1,7 @@
 from keras.datasets import imdb
 from keras import models
 from keras import layers
+from keras import regularizers
 
 import matplotlib.pyplot as plt
 
@@ -31,8 +32,10 @@ since the format of the data is simple, densely connected layers work well with 
 '''
 
 model = models.Sequential()
-model.add(layers.Dense(16, activation='relu', input_shape=(10000,)))
-model.add(layers.Dense(16, activation='relu'))
+model.add(layers.Dense(16, kernel_regularizer=regularizers.l2(.001), activation='relu', input_shape=(10000,)))
+model.add(layers.Dropout(0.5))
+model.add(layers.Dense(16, kernel_regularizer=regularizers.l2(.001), activation='relu'))
+model.add(layers.Dropout(0.5))
 model.add(layers.Dense(1, activation='sigmoid')) # probability of a positive review
 
 '''
